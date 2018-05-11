@@ -2,17 +2,19 @@ package elberger.shabbatinfo;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.io.FileNotFoundException;
 
 import javax.swing.*;
 
 public class ShabbatInfoView extends JFrame
 {
-	static JTextField zip;
-	static JTextField city;
-	static JTextField date;
-	static JTextField parsha;
-	static JTextField candles;
-	static JTextField havdallah;
+	String zipString;
+	String cityString;
+	String dateString;
+	String parshaString;
+	String candlesString;
+	String havdallahString;
+	JButton button;
 	public ShabbatInfoView()
 	{
 		setTitle("Shabbat Times");
@@ -27,9 +29,16 @@ public class ShabbatInfoView extends JFrame
 		panel.add(searchZip, BorderLayout.NORTH);
 
 		JLabel enterZip = new JLabel("Enter your zip code: ");
-		zip = new JTextField();
+		JTextField zip = new JTextField();
+		button = new JButton("Go");
 		searchZip.add(enterZip);
 		searchZip.add(zip);
+		searchZip.add(button);
+		
+		button.addActionListener(e ->
+		{
+			//searchZip();
+		});
 
 		JPanel info = new JPanel();
 		info.setLayout(new GridLayout(5, 2));
@@ -45,7 +54,7 @@ public class ShabbatInfoView extends JFrame
 		candles.setEditable(false);
 		havdallah.setEditable(false);
 
-		JLabel cityLabel = new JLabel("Shabbat times in:");
+		JLabel cityLabel = new JLabel("Shabbat times in:" + zipString);
 		JLabel dateLabel = new JLabel("For the week of:");
 		JLabel parshaLabel = new JLabel("Parshat:");
 		JLabel candlesLabel = new JLabel("Candle lighting:");

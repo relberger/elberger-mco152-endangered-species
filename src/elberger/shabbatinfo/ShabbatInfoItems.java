@@ -1,6 +1,6 @@
 package elberger.shabbatinfo;
 
-public class ShabbatInfoModel
+public class ShabbatInfoItems
 {
 
 	private String city;
@@ -9,7 +9,7 @@ public class ShabbatInfoModel
 	private String candles;
 	private String havdallah;
 	
-	public ShabbatInfoModel(String city, String date, String parsha, String candles, String havdallah)
+	public ShabbatInfoItems(String city, String date, String parsha, String candles, String havdallah)
 	{
 		super();
 		this.city = city;
