@@ -1,19 +1,10 @@
 package elberger.shabbatinfo;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
-
 import javax.swing.text.JTextComponent;
 
-import elberger.earthquake.Earthquake;
-import elberger.earthquake.EarthquakeProperties;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ShabbatInfoController
 {
@@ -26,7 +17,8 @@ public class ShabbatInfoController
 		this.service = service;
 	}
 
-	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, String city)
+	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent candles, JTextComponent parsha,
+			JTextComponent havdallah) 
 	{
 		call.enqueue(new Callback<ShabbatInfoFeedModel>()
 		{
@@ -35,9 +27,8 @@ public class ShabbatInfoController
 			{
 				ShabbatInfoFeedModel feed = response.body();
 
-				//showShabbatInfo(feed);
+				showShabbatInfo(feed, candles, parsha, havdallah);
 			}
-
 
 			@Override
 			public void onFailure(Call<ShabbatInfoFeedModel> call, Throwable t)
@@ -47,15 +38,25 @@ public class ShabbatInfoController
 		});
 	}
 
-	private void showShabbatInfo(ShabbatInfoFeedModel feed, String city, String date, String parsha, String candles, String havdallah)
+	public void requestShabbatInfo()
 	{
-		Stream<ShabbatInfo> info = feed.getItems().stream();
+		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getCandlesTextField(), 
+				view.getParshaTextField(), view.getHavdallahTextField());
+	}
 
-		ShabbatInfoProperties properties = info.getClass().;
-
-		String magnitude = String.valueOf(properties.getMag());
-		String location = String.valueOf(properties.getPlace());
-		magnitudeField.setText(magnitude);
-		locationField.setText(location);
+	private void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candles, JTextComponent parsha, JTextComponent havdallah)
+	{
+		ShabbatInfo candlesInfo = feed.getItems().get(0);
+		String candlesString = candlesInfo.getItems().getCandles();
+		
+		ShabbatInfo parshaInfo = feed.getItems().get(1);
+		String parshaString = parshaInfo.getItems().getParsha();
+		
+		ShabbatInfo havdallahInfo = feed.getItems().get(2);
+		String havdallahString = havdallahInfo.getItems().getHavdallah();		
+		
+		candles.setText(candlesString);
+		parsha.setText(parshaString);
+		havdallah.setText(havdallahString);
 	}
 }

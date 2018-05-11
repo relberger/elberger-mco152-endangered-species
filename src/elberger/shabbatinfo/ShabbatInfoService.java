@@ -7,5 +7,5 @@ import retrofit2.http.Query;
 public interface ShabbatInfoService
 {
 	@GET("http://www.hebcal.com/shabbat/?cfg=json&zip=")
-	Call<ShabbatInfoItems> useZip(@Query("zip") String userZip);
+	Call<ShabbatInfoFeedModel> useZip(@Query("zip") String userZip);
 }

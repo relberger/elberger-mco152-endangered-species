@@ -5,16 +5,19 @@ import java.awt.GridLayout;
 import java.io.FileNotFoundException;
 
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 
 public class ShabbatInfoView extends JFrame
 {
-	String zipString;
-	String cityString;
-	String dateString;
-	String parshaString;
-	String candlesString;
-	String havdallahString;
+	private static final long serialVersionUID = 1L;
+	private JTextField zip;
+	private JTextField city;
+	private JTextField date;
+	private JTextField parsha;
+	private JTextField candles;
+	private JTextField havdallah;
 	JButton button;
+
 	public ShabbatInfoView()
 	{
 		setTitle("Shabbat Times");
@@ -29,37 +32,37 @@ public class ShabbatInfoView extends JFrame
 		panel.add(searchZip, BorderLayout.NORTH);
 
 		JLabel enterZip = new JLabel("Enter your zip code: ");
-		JTextField zip = new JTextField();
+		zip = new JTextField();
 		button = new JButton("Go");
 		searchZip.add(enterZip);
 		searchZip.add(zip);
 		searchZip.add(button);
-		
+
 		button.addActionListener(e ->
 		{
-			//searchZip();
+			// searchZip();
 		});
 
 		JPanel info = new JPanel();
 		info.setLayout(new GridLayout(5, 2));
-		
-		JTextField city = new JTextField();
-		JTextField date = new JTextField();
-		JTextField parsha = new JTextField();
-		JTextField candles = new JTextField();
-		JTextField havdallah = new JTextField();
+
+		city = new JTextField();
+		date = new JTextField();
+		parsha = new JTextField();
+		candles = new JTextField();
+		havdallah = new JTextField();
 		city.setEditable(false);
 		date.setEditable(false);
 		parsha.setEditable(false);
 		candles.setEditable(false);
 		havdallah.setEditable(false);
 
-		JLabel cityLabel = new JLabel("Shabbat times in:" + zipString);
+		JLabel cityLabel = new JLabel("Shabbat times in:");
 		JLabel dateLabel = new JLabel("For the week of:");
 		JLabel parshaLabel = new JLabel("Parshat:");
 		JLabel candlesLabel = new JLabel("Candle lighting:");
 		JLabel havdallahLabel = new JLabel("Havdallah:");
-		
+
 		info.add(cityLabel);
 		info.add(city);
 		info.add(dateLabel);
@@ -73,6 +76,26 @@ public class ShabbatInfoView extends JFrame
 		panel.add(info, BorderLayout.CENTER);
 
 		add(panel);
+	}
+
+	public String getUserZip()
+	{
+		return zip.getText();
+	}
+
+	public JTextComponent getCandlesTextField()
+	{
+		return candles;
+	}
+
+	public JTextComponent getParshaTextField()
+	{
+		return parsha;
+	}
+
+	public JTextComponent getHavdallahTextField()
+	{
+		return havdallah;
 	}
 
 	public static void main(String[] args)

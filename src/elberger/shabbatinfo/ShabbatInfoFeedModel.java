@@ -2,25 +2,34 @@ package elberger.shabbatinfo;
 
 import java.util.List;
 
-
 public class ShabbatInfoFeedModel
 {
-	private String type;
+	private String category;
+	private String title;
 	private List<ShabbatInfo> items;
 
-	public ShabbatInfoFeedModel(String type, List<ShabbatInfo> items)
+	public ShabbatInfoFeedModel(String category, String title, List<ShabbatInfo> items)
 	{
-		this.type = type;
+		super();
+		this.category = category;
+		this.title = title;
 		this.items = items;
 	}
-	
-	public String getType()
+
+	public String getCategory()
 	{
-		return type;
+		return category;
 	}
-	
+
+	public String getTitle()
+	{
+		return title;
+	}
+
 	public List<ShabbatInfo> getItems()
 	{
 		return items;
 	}
+	
+
 }

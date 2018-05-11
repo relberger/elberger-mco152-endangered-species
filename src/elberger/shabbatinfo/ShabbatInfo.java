@@ -2,20 +2,15 @@ package elberger.shabbatinfo;
 
 public class ShabbatInfo
 {
-	private String id;
-	private ShabbatInfoItems properties;
+	private ShabbatInfoItems items;
 	
-
-	public ShabbatInfo(String city, String date, String parsha, String candles, String havdallah)
+	public ShabbatInfo(String date, String parsha, String candles, String havdallah)
 	{
-		properties = new ShabbatInfoItems(city, date, parsha, candles, havdallah);
+		items = new ShabbatInfoItems(date, parsha, candles, havdallah);
 	}
-	public String getId()
+	
+	public ShabbatInfoItems getItems()
 	{
-		return id;
-	}
-	public ShabbatInfoItems getProperties()
-	{
-		return properties;
+		return items;
 	}
 }
