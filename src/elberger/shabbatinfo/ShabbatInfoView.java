@@ -19,7 +19,6 @@ public class ShabbatInfoView extends JFrame
 	private JTextField parsha;
 	private JTextField candles;
 	private JTextField havdallah;
-	JButton button;
 
 	public ShabbatInfoView()
 	{
@@ -36,7 +35,7 @@ public class ShabbatInfoView extends JFrame
 
 		JLabel enterZip = new JLabel("Enter your zip code: ");
 		zip = new JTextField();
-		button = new JButton("Go");
+		JButton button = new JButton("Go");
 		searchZip.add(enterZip);
 		searchZip.add(zip);
 		searchZip.add(button);

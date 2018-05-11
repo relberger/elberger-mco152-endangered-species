@@ -1,5 +1,8 @@
 package elberger.shabbatinfo;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 import javax.swing.text.JTextComponent;
 
 import retrofit2.Call;
@@ -46,17 +49,17 @@ public class ShabbatInfoController
 
 	private void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candles, JTextComponent parsha, JTextComponent havdallah)
 	{
-		ShabbatInfo candlesInfo = feed.getItems().get(0);
-		String candlesString = candlesInfo.getItems().getCandles();
+		feed.setCategory("candles");
+/*		String candlesString = feed.getItems().get(0).getItems().getCandles();
 		
-		ShabbatInfo parshaInfo = feed.getItems().get(1);
-		String parshaString = parshaInfo.getItems().getParsha();
+		feed.setCategory("parashat");
+		String parshaString = feed.getItems().get(1).getItems().getParsha();
 		
-		ShabbatInfo havdallahInfo = feed.getItems().get(2);
-		String havdallahString = havdallahInfo.getItems().getHavdallah();		
+		feed.setCategory("havdalah");
+		String havdallahString = feed.getItems().get(2).getItems().getHavdallah();	*/	
 		
-		candles.setText(candlesString);
-		parsha.setText(parshaString);
-		havdallah.setText(havdallahString);
+		candles.setText("test");
+/*		parsha.setText(parshaString);
+		havdallah.setText(havdallahString);*/
 	}
 }

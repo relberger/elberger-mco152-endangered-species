@@ -16,6 +16,11 @@ public class ShabbatInfoFeedModel
 		this.items = items;
 	}
 
+	public String setCategory(String category)
+	{
+		return this.category = category;
+	}
+
 	public String getCategory()
 	{
 		return category;
