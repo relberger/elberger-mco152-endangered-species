@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class ShabbatInfoView extends JFrame
 {
 	private static final long serialVersionUID = 1L;
@@ -40,7 +43,16 @@ public class ShabbatInfoView extends JFrame
 
 		button.addActionListener(e ->
 		{
-			// searchZip();
+			Retrofit retrofit = new Retrofit.Builder()
+					.baseUrl("http://www.hebcal.com")
+					.addConverterFactory(GsonConverterFactory.create())
+					.build();
+			
+			ShabbatInfoService service = retrofit.create(ShabbatInfoService.class);
+				
+			ShabbatInfoController controller = new ShabbatInfoController(this, service);
+			
+			controller.requestShabbatInfo();			
 		});
 
 		JPanel info = new JPanel();
@@ -76,6 +88,7 @@ public class ShabbatInfoView extends JFrame
 		panel.add(info, BorderLayout.CENTER);
 
 		add(panel);
+	
 	}
 
 	public String getUserZip()
