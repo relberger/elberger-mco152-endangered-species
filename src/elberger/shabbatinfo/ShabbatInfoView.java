@@ -2,8 +2,6 @@ package elberger.shabbatinfo;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.io.FileNotFoundException;
-
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
 

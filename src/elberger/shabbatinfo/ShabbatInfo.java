@@ -2,11 +2,16 @@ package elberger.shabbatinfo;
 
 public class ShabbatInfo
 {
+	
+	private String date;
+	private String candles;
+	private String parashat;
+	private String havdalah;
 	private ShabbatInfoItems items;
 	
-	public ShabbatInfo(String date, String parsha, String candles, String havdallah)
+	public ShabbatInfo(String category, String title)
 	{
-		items = new ShabbatInfoItems(date, parsha, candles, havdallah);
+		items = new ShabbatInfoItems(date, candles, parashat, havdalah);
 	}
 	
 	public ShabbatInfoItems getItems()

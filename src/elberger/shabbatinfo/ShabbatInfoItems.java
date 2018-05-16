@@ -2,18 +2,41 @@ package elberger.shabbatinfo;
 
 public class ShabbatInfoItems
 {
-	private String date;
-	private String parsha;
-	private String candles;
-	private String havdallah;
 	
-	public ShabbatInfoItems(String date, String parsha, String candles, String havdallah)
+	/*private String category;
+	private String title;
+	
+	public ShabbatInfoItems(String category, String title)
+	{
+		super();
+		this.category = category;
+		this.title = title;
+	}
+
+	public String getCategory()
+	{
+		return category;
+	}
+
+	public String getTitle()
+	{
+		return title;
+	}
+	*/
+	
+	
+	private String date;
+	private String candles;
+	private String parashat;
+	private String havdalah;
+	
+	public ShabbatInfoItems(String date, String candles, String parashat, String havdalah)
 	{
 		super();
 		this.date = date;
-		this.parsha = parsha;
+		this.parashat = parashat;
 		this.candles = candles;
-		this.havdallah = havdallah;
+		this.havdalah = havdalah;
 	}
 	public String getDate()
 	{
@@ -21,15 +44,15 @@ public class ShabbatInfoItems
 	}
 	public String getParsha()
 	{
-		return parsha;
+		return parashat;
 	}
 	public String getCandles()
 	{
 		return candles;
 	}
-	public String getHavdallah()
+	public String getHavdalah()
 	{
-		return havdallah;
+		return havdalah;
 	}
 	
 }

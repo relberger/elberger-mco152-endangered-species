@@ -1,7 +1,6 @@
 package elberger.shabbatinfo;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import javax.swing.text.JTextComponent;
 
@@ -47,19 +46,25 @@ public class ShabbatInfoController
 				view.getParshaTextField(), view.getHavdallahTextField());
 	}
 
-	private void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candles, JTextComponent parsha, JTextComponent havdallah)
+	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candles, JTextComponent parsha, JTextComponent havdallah)
 	{
-		feed.setCategory("candles");
-/*		String candlesString = feed.getItems().get(0).getItems().getCandles();
+		candles = view.getCandlesTextField();
+		parsha =  view.getParshaTextField();
+		havdallah = view.getHavdallahTextField();
+
+		List<ShabbatInfo> candlesInfo = feed.getItems();
+		//candles.setText(candlesInfo.toString());
+		candles.setText("test");
 		
-		feed.setCategory("parashat");
+		//feed.setCategory("candles");
+		
+		/*feed.setCategory("parashat");
 		String parshaString = feed.getItems().get(1).getItems().getParsha();
 		
 		feed.setCategory("havdalah");
-		String havdallahString = feed.getItems().get(2).getItems().getHavdallah();	*/	
+		String havdallahString = feed.getItems().get(2).getItems().getHavdallah();	
 		
-		candles.setText("test");
-/*		parsha.setText(parshaString);
+		parsha.setText(parshaString);
 		havdallah.setText(havdallahString);*/
 	}
 }
