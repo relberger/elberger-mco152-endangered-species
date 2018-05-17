@@ -1,6 +1,7 @@
 package elberger.shabbatinfo;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.swing.text.JTextComponent;
 
@@ -52,9 +53,11 @@ public class ShabbatInfoController
 		parsha =  view.getParshaTextField();
 		havdallah = view.getHavdallahTextField();
 
-		List<ShabbatInfo> candlesInfo = feed.getItems();
-		//candles.setText(candlesInfo.toString());
-		candles.setText("test");
+		//String candlesStream = "candles";
+		ShabbatInfo candlesInfo = (ShabbatInfo) feed.getItems().stream();//.filter(i -> i.getItems(.) == candlesStream);
+		ShabbatInfoItems items = candlesInfo.getItems();
+		candles.setText(items.getCandles());
+		//candles.setText("test");
 		
 		//feed.setCategory("candles");
 		

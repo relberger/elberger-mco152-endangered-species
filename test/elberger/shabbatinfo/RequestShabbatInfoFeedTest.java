@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -42,8 +43,8 @@ class RequestShabbatInfoFeedTest
 
 		//then 
 		assertEquals("Candle lighting: 7:52pm", view.getCandlesTextField().getText());*/
-		
-		System.out.println(feed.getItems());
+		Stream<ShabbatInfo> stream = feed.getItems().stream();
+		System.out.println(stream);
 	}
 
 }
