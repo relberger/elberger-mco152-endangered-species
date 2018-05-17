@@ -37,13 +37,12 @@ class RequestShabbatInfoFeedTest
 		
 		Call<ShabbatInfoFeedModel> call = service.useZip("07208");
 		
-		/*//when 
+		//when 
 		controller.requestShabbatInfoFeed(call, view.getCandlesTextField(), 
-											view.getParshaTextField(), view.getHavdallahTextField());
+											view.getParashatTextField(), view.getHavdalahTextField());
 
 		//then 
-		assertEquals("Candle lighting: 7:52pm", view.getCandlesTextField().getText());*/
-		System.out.println(feed.getItems().stream());
+		assertEquals("Candle lighting: 7:52pm", feed.getItems().get(0).getInfoItems().getCandles());
 	}
 
 }
