@@ -14,7 +14,7 @@ public class ShabbatInfo
 		items = new ShabbatInfoItems(date, candles, parashat, havdalah);
 	}
 	
-	public ShabbatInfoItems getItems()
+	public ShabbatInfoItems getInfoItems()
 	{
 		return items;
 	}

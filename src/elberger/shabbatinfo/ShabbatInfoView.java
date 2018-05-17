@@ -49,7 +49,7 @@ public class ShabbatInfoView extends JFrame
 				
 			ShabbatInfoController controller = new ShabbatInfoController(this, service);
 			
-			controller.requestShabbatInfo();			
+			controller.requestShabbatInfo();				
 		});
 
 		JPanel info = new JPanel();
@@ -98,12 +98,12 @@ public class ShabbatInfoView extends JFrame
 		return candles;
 	}
 
-	public JTextComponent getParshaTextField()
+	public JTextComponent getParashatTextField()
 	{
 		return parsha;
 	}
 
-	public JTextComponent getHavdallahTextField()
+	public JTextComponent getHavdalahTextField()
 	{
 		return havdallah;
 	}

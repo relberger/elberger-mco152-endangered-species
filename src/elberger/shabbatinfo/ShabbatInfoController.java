@@ -20,8 +20,8 @@ public class ShabbatInfoController
 		this.service = service;
 	}
 
-	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent candles, JTextComponent parsha,
-			JTextComponent havdallah) 
+	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent candles, JTextComponent parashat, 
+			                           JTextComponent havdalah) 
 	{
 		call.enqueue(new Callback<ShabbatInfoFeedModel>()
 		{
@@ -30,7 +30,7 @@ public class ShabbatInfoController
 			{
 				ShabbatInfoFeedModel feed = response.body();
 
-				showShabbatInfo(feed, candles, parsha, havdallah);
+				showShabbatInfo(feed, candles, parashat, havdalah);
 			}
 
 			@Override
@@ -43,31 +43,19 @@ public class ShabbatInfoController
 
 	public void requestShabbatInfo()
 	{
-		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getCandlesTextField(), 
-				view.getParshaTextField(), view.getHavdallahTextField());
+		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getCandlesTextField(),
+								view.getParashatTextField(), view.getHavdalahTextField());
 	}
 
-	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candles, JTextComponent parsha, JTextComponent havdallah)
+	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candlesTextField, JTextComponent parashatTextField,
+						JTextComponent havdalahTextField)
 	{
-		candles = view.getCandlesTextField();
-		parsha =  view.getParshaTextField();
-		havdallah = view.getHavdallahTextField();
-
-		//String candlesStream = "candles";
-		ShabbatInfo candlesInfo = (ShabbatInfo) feed.getItems().stream();//.filter(i -> i.getItems(.) == candlesStream);
-		ShabbatInfoItems items = candlesInfo.getItems();
-		candles.setText(items.getCandles());
-		//candles.setText("test");
+		Stream<ShabbatInfo> info = feed.getItems().stream();
+		ShabbatInfoItems items = ((ShabbatInfo) info).getInfoItems();
 		
-		//feed.setCategory("candles");
+		candlesTextField.setText(items.getCandles());
+		parashatTextField.setText(items.getParsha());
+		havdalahTextField.setText(items.getHavdalah());
 		
-		/*feed.setCategory("parashat");
-		String parshaString = feed.getItems().get(1).getItems().getParsha();
-		
-		feed.setCategory("havdalah");
-		String havdallahString = feed.getItems().get(2).getItems().getHavdallah();	
-		
-		parsha.setText(parshaString);
-		havdallah.setText(havdallahString);*/
 	}
 }

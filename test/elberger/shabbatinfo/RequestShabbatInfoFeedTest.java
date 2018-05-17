@@ -43,8 +43,7 @@ class RequestShabbatInfoFeedTest
 
 		//then 
 		assertEquals("Candle lighting: 7:52pm", view.getCandlesTextField().getText());*/
-		Stream<ShabbatInfo> stream = feed.getItems().stream();
-		System.out.println(stream);
+		System.out.println(feed.getItems().stream());
 	}
 
 }
