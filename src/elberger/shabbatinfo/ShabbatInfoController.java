@@ -1,8 +1,6 @@
 package elberger.shabbatinfo;
 
 import java.util.List;
-import java.util.stream.Stream;
-
 import javax.swing.text.JTextComponent;
 
 import retrofit2.Call;

@@ -16,14 +16,19 @@ public class ShabbatInfoFeedModel
 		this.items = items;
 	}
 
+	public String getCategory()
+	{
+		return category;
+	}
+	
 	public String getTitle()
 	{
 		return title;
 	}
+	
 	public List<ShabbatInfoItems> getItems()
 	{
 		return items;
 	}
-	
 
 }

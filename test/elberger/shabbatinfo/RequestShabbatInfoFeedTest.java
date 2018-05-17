@@ -17,14 +17,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 class RequestShabbatInfoFeedTest
 {
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
 	void test() throws IOException
 	{
 		ShabbatInfoView view = new ShabbatInfoView();
 		ShabbatInfoService service = Mockito.mock(ShabbatInfoService.class);
 		ShabbatInfoController controller = new ShabbatInfoController(view, service);
-		ShabbatInfo info = Mockito.mock(ShabbatInfo.class);
 		ShabbatInfoFeedModel feed = Mockito.mock(ShabbatInfoFeedModel.class);
 		
 

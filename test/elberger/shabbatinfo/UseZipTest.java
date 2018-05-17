@@ -1,6 +1,6 @@
 package elberger.shabbatinfo;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
 
@@ -14,9 +14,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 class UseZipTest
 {
 
-	@SuppressWarnings("unlikely-arg-type")
 	@Test
-	void test() throws IOException
+	void testUseZip() throws IOException
 	{
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl("http://www.hebcal.com")
@@ -30,7 +29,6 @@ class UseZipTest
 		Response<ShabbatInfoFeedModel> response = call.execute();
 
 		// then
-		assertTrue(response.equals("http://www.hebcal.com/shabbat/?cfg=json&zip=07208"));
-
+		assertFalse(response.body().getItems().isEmpty());
 	}
 }
