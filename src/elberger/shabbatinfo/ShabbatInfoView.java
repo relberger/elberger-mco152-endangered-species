@@ -12,16 +12,15 @@ public class ShabbatInfoView extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	private JTextField zip;
-	private JTextField city;
-	private JTextField date;
-	private JTextField parsha;
+	private JTextField location;
+	private JTextField parashat;
 	private JTextField candles;
-	private JTextField havdallah;
+	private JTextField havdalah;
 
 	public ShabbatInfoView()
 	{
 		setTitle("Shabbat Times");
-		setSize(400, 200);
+		setSize(400, 145);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -52,37 +51,33 @@ public class ShabbatInfoView extends JFrame
 			controller.requestShabbatInfo();				
 		});
 
+		JPanel locationInfo = new JPanel();
+		locationInfo.setLayout(new GridLayout(1, 2));
+
+		location = new JTextField();
+		location.setEditable(false);
+		JLabel locationLabel = new JLabel("Shabbat info for this week in:");
+		
+		locationInfo.add(locationLabel);
+		locationInfo.add(location);			
+		
+		panel.add(locationInfo, BorderLayout.CENTER);
+		
 		JPanel info = new JPanel();
-		info.setLayout(new GridLayout(5, 2));
-
-		city = new JTextField();
-		date = new JTextField();
-		parsha = new JTextField();
+		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+		
+		parashat = new JTextField();
 		candles = new JTextField();
-		havdallah = new JTextField();
-		city.setEditable(false);
-		date.setEditable(false);
-		parsha.setEditable(false);
+		havdalah = new JTextField();
+
+		parashat.setEditable(false);
 		candles.setEditable(false);
-		havdallah.setEditable(false);
+		havdalah.setEditable(false);
 
-		JLabel cityLabel = new JLabel("Shabbat times in:");
-		JLabel dateLabel = new JLabel("For the week of:");
-		JLabel parshaLabel = new JLabel("Parshat:");
-		JLabel candlesLabel = new JLabel("Candle lighting:");
-		JLabel havdallahLabel = new JLabel("Havdallah:");
-
-		info.add(cityLabel);
-		info.add(city);
-		info.add(dateLabel);
-		info.add(date);
-		info.add(parshaLabel);
-		info.add(parsha);
-		info.add(candlesLabel);
+		info.add(parashat);
 		info.add(candles);
-		info.add(havdallahLabel);
-		info.add(havdallah);
-		panel.add(info, BorderLayout.CENTER);
+		info.add(havdalah);
+		panel.add(info, BorderLayout.SOUTH);
 
 		add(panel);
 	
@@ -93,6 +88,11 @@ public class ShabbatInfoView extends JFrame
 		return zip.getText();
 	}
 
+	public JTextComponent getLocationTextField()
+	{
+		return location;
+	}
+	
 	public JTextComponent getCandlesTextField()
 	{
 		return candles;
@@ -100,12 +100,12 @@ public class ShabbatInfoView extends JFrame
 
 	public JTextComponent getParashatTextField()
 	{
-		return parsha;
+		return parashat;
 	}
 
 	public JTextComponent getHavdalahTextField()
 	{
-		return havdallah;
+		return havdalah;
 	}
 
 	public static void main(String[] args)

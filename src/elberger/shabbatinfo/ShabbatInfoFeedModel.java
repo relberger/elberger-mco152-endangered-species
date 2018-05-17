@@ -6,9 +6,9 @@ public class ShabbatInfoFeedModel
 {
 	private String category;
 	private String title;
-	private List<ShabbatInfo> items;
+	private List<ShabbatInfoItems> items;
 
-	public ShabbatInfoFeedModel(String category, String title, List<ShabbatInfo> items)
+	public ShabbatInfoFeedModel(String category, String title, List<ShabbatInfoItems> items)
 	{
 		super();
 		this.category = category;
@@ -16,22 +16,11 @@ public class ShabbatInfoFeedModel
 		this.items = items;
 	}
 
-	public String setCategory(String category)
-	{
-		return this.category = category;
-	}
-
-	public String getCategory()
-	{
-		return category;
-	}
-
 	public String getTitle()
 	{
 		return title;
 	}
-
-	public List<ShabbatInfo> getItems()
+	public List<ShabbatInfoItems> getItems()
 	{
 		return items;
 	}

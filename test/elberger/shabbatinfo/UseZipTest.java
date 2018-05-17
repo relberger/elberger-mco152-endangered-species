@@ -1,5 +1,7 @@
 package elberger.shabbatinfo;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
@@ -28,7 +30,7 @@ class UseZipTest
 		Response<ShabbatInfoFeedModel> response = call.execute();
 
 		// then
-		response.equals("http://www.hebcal.com/shabbat/?cfg=json&zip=07208");
+		assertTrue(response.equals("http://www.hebcal.com/shabbat/?cfg=json&zip=07208"));
 
 	}
 }

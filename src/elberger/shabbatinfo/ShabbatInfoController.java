@@ -20,8 +20,8 @@ public class ShabbatInfoController
 		this.service = service;
 	}
 
-	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent candles, JTextComponent parashat, 
-			                           JTextComponent havdalah) 
+	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent location, JTextComponent candles,  
+										JTextComponent parashat, JTextComponent havdalah) 
 	{
 		call.enqueue(new Callback<ShabbatInfoFeedModel>()
 		{
@@ -30,7 +30,7 @@ public class ShabbatInfoController
 			{
 				ShabbatInfoFeedModel feed = response.body();
 
-				showShabbatInfo(feed, candles, parashat, havdalah);
+				showShabbatInfo(feed, location, candles, parashat, havdalah);
 			}
 
 			@Override
@@ -43,19 +43,30 @@ public class ShabbatInfoController
 
 	public void requestShabbatInfo()
 	{
-		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getCandlesTextField(),
+		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getLocationTextField(), view.getCandlesTextField(),
 								view.getParashatTextField(), view.getHavdalahTextField());
 	}
 
-	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent candlesTextField, JTextComponent parashatTextField,
-						JTextComponent havdalahTextField)
+	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent locationTextField, JTextComponent candlesTextField, 
+						JTextComponent parashatTextField, JTextComponent havdalahTextField)
 	{
-		Stream<ShabbatInfo> info = feed.getItems().stream();
-		ShabbatInfoItems items = ((ShabbatInfo) info).getInfoItems();
+		List<ShabbatInfoItems> info = feed.getItems();
 		
-		candlesTextField.setText(items.getCandles());
-		parashatTextField.setText(items.getParsha());
-		havdalahTextField.setText(items.getHavdalah());
+		locationTextField.setText(feed.getTitle());
+		
+		
+		if(info.get(0).getCategory().equals("candles"))
+		{
+			candlesTextField.setText(info.get(0).getTitle());
+		}
+		if(info.get(1).getCategory().equals("parashat"))
+		{
+			parashatTextField.setText(info.get(1).getTitle());
+		}
+		if(info.get(2).getCategory().equals("havdalah"))
+		{
+			havdalahTextField.setText(info.get(2).getTitle());
+		}
 		
 	}
 }
