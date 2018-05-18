@@ -13,14 +13,17 @@ public class ShabbatInfoView extends JFrame
 	private static final long serialVersionUID = 1L;
 	private JTextField zip;
 	private JTextField location;
+	private JLabel parashatLabel;
 	private JTextField parashat;
+	private JLabel candlesLabel;
 	private JTextField candles;
+	private JLabel havdalahLabel;
 	private JTextField havdalah;
 
 	public ShabbatInfoView()
 	{
 		setTitle("Shabbat Times");
-		setSize(400, 145);
+		setSize(400, 200);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		JPanel panel = new JPanel();
@@ -51,33 +54,33 @@ public class ShabbatInfoView extends JFrame
 			controller.requestShabbatInfo();				
 		});
 
-		JPanel locationInfo = new JPanel();
-		locationInfo.setLayout(new GridLayout(1, 2));
+		JPanel info = new JPanel();
+		info.setLayout(new GridLayout(4, 2));
 
 		location = new JTextField();
-		location.setEditable(false);
-		JLabel locationLabel = new JLabel("Shabbat info for this week in:");
-		
-		locationInfo.add(locationLabel);
-		locationInfo.add(location);			
-		
-		panel.add(locationInfo, BorderLayout.CENTER);
-		
-		JPanel info = new JPanel();
-		info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
-		
 		parashat = new JTextField();
 		candles = new JTextField();
 		havdalah = new JTextField();
 
+		location.setEditable(false);
 		parashat.setEditable(false);
 		candles.setEditable(false);
 		havdalah.setEditable(false);
 
+		JLabel locationLabel = new JLabel("Shabbat info for this week in:");
+		parashatLabel = new JLabel();
+		candlesLabel = new JLabel();
+		havdalahLabel = new JLabel();
+
+		info.add(locationLabel);
+		info.add(location);	
+		info.add(parashatLabel);
 		info.add(parashat);
+		info.add(candlesLabel);
 		info.add(candles);
+		info.add(havdalahLabel);
 		info.add(havdalah);
-		panel.add(info, BorderLayout.SOUTH);
+		panel.add(info, BorderLayout.CENTER);
 
 		add(panel);
 	
@@ -93,14 +96,30 @@ public class ShabbatInfoView extends JFrame
 		return location;
 	}
 	
+	public JLabel getCandlesLabel()
+	{
+		return candlesLabel;
+	}
+	
 	public JTextComponent getCandlesTextField()
 	{
 		return candles;
 	}
+	
+	public JLabel getParashatLabel()
+	{
+		return parashatLabel;
+	}
+
 
 	public JTextComponent getParashatTextField()
 	{
 		return parashat;
+	}
+	
+	public JLabel getHavdalahLabel()
+	{
+		return havdalahLabel;
 	}
 
 	public JTextComponent getHavdalahTextField()

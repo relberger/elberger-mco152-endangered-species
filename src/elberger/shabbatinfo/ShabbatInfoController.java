@@ -1,6 +1,8 @@
 package elberger.shabbatinfo;
 
 import java.util.List;
+
+import javax.swing.JLabel;
 import javax.swing.text.JTextComponent;
 
 import retrofit2.Call;
@@ -18,8 +20,8 @@ public class ShabbatInfoController
 		this.service = service;
 	}
 
-	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent location, JTextComponent candles,  
-										JTextComponent parashat, JTextComponent havdalah) 
+	public void requestShabbatInfoFeed(Call<ShabbatInfoFeedModel> call, JTextComponent location, JLabel candlesLabel, JTextComponent candles,  
+										JLabel parashatLabel, JTextComponent parashat, JLabel havdalahLabel, JTextComponent havdalah) 
 	{
 		call.enqueue(new Callback<ShabbatInfoFeedModel>()
 		{
@@ -28,7 +30,7 @@ public class ShabbatInfoController
 			{
 				ShabbatInfoFeedModel feed = response.body();
 
-				showShabbatInfo(feed, location, candles, parashat, havdalah);
+				showShabbatInfo(feed, location, candlesLabel, candles, parashatLabel, parashat, havdalahLabel, havdalah);
 			}
 
 			@Override
@@ -41,12 +43,13 @@ public class ShabbatInfoController
 
 	public void requestShabbatInfo()
 	{
-		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getLocationTextField(), view.getCandlesTextField(),
-								view.getParashatTextField(), view.getHavdalahTextField());
+		requestShabbatInfoFeed(service.useZip(view.getUserZip()), view.getLocationTextField(), view.getCandlesLabel(),
+								view.getCandlesTextField(), view.getParashatLabel(), view.getParashatTextField(), 
+								view.getHavdalahLabel(), view.getHavdalahTextField());
 	}
 
-	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent locationTextField, JTextComponent candlesTextField, 
-						JTextComponent parashatTextField, JTextComponent havdalahTextField)
+	void showShabbatInfo(ShabbatInfoFeedModel feed, JTextComponent locationTextField, JLabel candlesLabel, JTextComponent candlesTextField, 
+						JLabel parashatLabel, JTextComponent parashatTextField, JLabel havdalahLabel, JTextComponent havdalahTextField)
 	{
 		List<ShabbatInfoItems> info = feed.getItems();
 		
@@ -55,15 +58,24 @@ public class ShabbatInfoController
 		
 		if(info.get(0).getCategory().equals("candles"))
 		{
-			candlesTextField.setText(info.get(0).getTitle());
+			String candlesInfo = info.get(0).getTitle();
+			String candlesInfoSplit[] = candlesInfo.split(":", 2);
+			candlesLabel.setText(candlesInfoSplit[0] + ":");
+			candlesTextField.setText(candlesInfoSplit[1]);
 		}
 		if(info.get(1).getCategory().equals("parashat"))
 		{
-			parashatTextField.setText(info.get(1).getTitle());
+			String parashatInfo = info.get(1).getTitle();
+			String parashatInfoSplit[] = parashatInfo.split(" ", 2);
+			parashatLabel.setText(parashatInfoSplit[0] + ":");
+			parashatTextField.setText(parashatInfoSplit[1]);
 		}
 		if(info.get(2).getCategory().equals("havdalah"))
 		{
-			havdalahTextField.setText(info.get(2).getTitle());
+			String havdalahInfo = info.get(2).getTitle();
+			String havdalahInfoSplit[] = havdalahInfo.split(" ", 2);
+			havdalahLabel.setText(havdalahInfoSplit[0] + ":");
+			havdalahTextField.setText(havdalahInfoSplit[1]);
 		}
 		
 	}
